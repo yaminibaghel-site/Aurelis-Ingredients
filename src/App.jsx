@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowRight, Menu, X, Check } from "lucide-react";
 
@@ -14,8 +14,11 @@ const CSS = `
 .optB .sec{padding:78px 0}.optB .sec h2{font-size:clamp(1.9rem,3.4vw,2.7rem);max-width:22ch}.optB .sec .intro{color:var(--muted);font-size:1.05rem;max-width:58ch;margin-top:14px}.optB .diag{margin-top:46px;border:1px solid var(--line);border-radius:12px;overflow:hidden}.optB .drow{display:grid;grid-template-columns:1.1fr 1.6fr;gap:24px;padding:22px 26px;border-bottom:1px solid var(--line);background:var(--panel)}.optB .drow:last-child{border-bottom:none}.optB .drow .t{display:flex;align-items:flex-start;gap:12px}.optB .drow .ic{width:22px;height:22px;border-radius:50%;background:rgba(95,185,142,.16);color:var(--mint);display:grid;place-items:center;flex-shrink:0;margin-top:2px}.optB .drow h3{font-size:1.18rem}.optB .drow p{color:var(--muted);font-size:.96rem}.optB .drow .tag{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-top:6px}
 .optB .steps{padding:78px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}.optB .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}.optB .step{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:22px}.optB .step .n{font-family:'IBM Plex Mono';color:var(--amber);font-size:.9rem;font-weight:600}.optB .step h3{font-size:1.1rem;margin:10px 0 7px}.optB .step p{color:var(--muted);font-size:.9rem}
 .optB .ingredients{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}.optB .ingredient{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}.optB .ingredient h3{font-size:1.12rem;margin-bottom:8px}.optB .ingredient p{color:var(--muted);font-size:.95rem}.optB .faq{margin-top:36px;border-top:1px solid var(--line)}.optB details{border-bottom:1px solid var(--line);padding:18px 0}.optB summary{cursor:pointer;font-family:'Space Grotesk';font-weight:600}.optB details p{color:var(--muted);margin-top:10px;max-width:72ch}
-.optB .cta{padding:92px 0;text-align:center}.optB .cta h2{font-size:clamp(2rem,4.2vw,3.2rem);max-width:20ch;margin:0 auto}.optB .cta p{color:var(--muted);font-size:1.1rem;max-width:54ch;margin:16px auto 0}.optB .formbox{margin-top:34px;max-width:780px;margin-left:auto;margin-right:auto;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px}.optB .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.optB .field{display:flex;flex-direction:column;gap:7px}.optB label{font-family:'IBM Plex Mono';font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.optB input,.optB select,.optB textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--off);padding:12px 13px;font:inherit;outline:none}.optB textarea{min-height:120px;resize:vertical}.optB input:focus,.optB select:focus,.optB textarea:focus{border-color:var(--mint)}.optB .full{grid-column:1/-1}.optB .note{font-size:.86rem;color:var(--muted);margin-top:10px}.optB .status{font-size:.92rem;margin-top:12px}.optB .success{color:var(--mint)}.optB .error{color:var(--danger)}.optB .hp{display:none!important}.optB footer{border-top:1px solid var(--line);padding:34px 0}.optB .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:'IBM Plex Mono';font-size:.74rem;color:var(--muted)}
-@media(max-width:820px){.optB .sgrid,.optB .ingredients{grid-template-columns:1fr 1fr}.optB .drow{grid-template-columns:1fr}}@media(max-width:600px){.optB .nlinks,.optB header .nav>.btn{display:none}.optB .mbtn{display:block}.optB .mobile.open{display:block}.optB .sgrid,.optB .ingredients,.optB .formgrid{grid-template-columns:1fr}.optB .full{grid-column:auto}.optB .sec,.optB .steps,.optB .cta{padding:54px 0}.optB .hero{padding:54px 0}}
+.optB .cta{padding:92px 0;text-align:center}.optB .cta h2{font-size:clamp(2rem,4.2vw,3.2rem);max-width:20ch;margin:0 auto}.optB .cta p{color:var(--muted);font-size:1.1rem;max-width:54ch;margin:16px auto 0}
+.optB .typeformbox{margin-top:34px;max-width:880px;margin-left:auto;margin-right:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;overflow:hidden}
+.optB .tf-wrapper{width:100%;min-height:700px;border-radius:10px;overflow:hidden}
+.optB footer{border-top:1px solid var(--line);padding:34px 0}.optB .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:'IBM Plex Mono';font-size:.74rem;color:var(--muted)}
+@media(max-width:820px){.optB .sgrid,.optB .ingredients{grid-template-columns:1fr 1fr}.optB .drow{grid-template-columns:1fr}}@media(max-width:600px){.optB .nlinks,.optB header .nav>.btn{display:none}.optB .mbtn{display:block}.optB .mobile.open{display:block}.optB .sgrid,.optB .ingredients{grid-template-columns:1fr}.optB .sec,.optB .steps,.optB .cta{padding:54px 0}.optB .hero{padding:54px 0}.optB .tf-wrapper{min-height:760px}}
 `;
 
 const DIAG = [
@@ -52,126 +55,227 @@ const FAQS = [
 
 function App() {
   const [m, setM] = useState(false);
-  const [status, setStatus] = useState("");
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "8ebffb6e-60cd-48e9-804d-996e03b614e0";
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setStatus("Sending...");
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", accessKey);
-    formData.append("subject", "New sourcing inquiry from Aurelis Ingredients website");
-    formData.append("from_name", "Aurelis Website");
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src="//embed.typeform.com/next/embed.js"]');
 
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
-      const data = await res.json();
-      if (data.success) {
-        setStatus("success: Thanks — we received your requirement and will respond shortly.");
-        e.currentTarget.reset();
-      } else {
-        setStatus("error: Something went wrong. Please email us directly.");
-      }
-    } catch {
-      setStatus("error: Network issue. Please email us directly.");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "//embed.typeform.com/next/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
     }
-  }
+  }, []);
 
   const navLinks = [
-    ["#scope", "Scope"], ["#process", "Process"], ["#ingredients", "Ingredients"], ["#faq", "FAQ"], ["#write-to-us", "Write to us"]
+    ["#scope", "Scope"],
+    ["#process", "Process"],
+    ["#ingredients", "Ingredients"],
+    ["#faq", "FAQ"],
+    ["#write-to-us", "Write to us"],
   ];
 
   return (
     <div className="optB">
       <style>{CSS}</style>
+
       <header>
         <div className="wrap nav">
-          <a href="#top" className="brand"><span className="sq" />AURELIS INGREDIENTS</a>
-          <nav className="nlinks" aria-label="Main navigation">{navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
-          <a href="#write-to-us" className="btn pri" style={{ padding: "9px 16px" }}>Request samples</a>
-          <button className="mbtn" aria-label="Toggle menu" onClick={() => setM(!m)}>{m ? <X /> : <Menu />}</button>
+          <a href="#top" className="brand">
+            <span className="sq" />AURELIS INGREDIENTS
+          </a>
+
+          <nav className="nlinks" aria-label="Main navigation">
+            {navLinks.map(([href, label]) => (
+              <a key={href} href={href}>
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          <a href="#write-to-us" className="btn pri" style={{ padding: "9px 16px" }}>
+            Request samples
+          </a>
+
+          <button className="mbtn" aria-label="Toggle menu" onClick={() => setM(!m)}>
+            {m ? <X /> : <Menu />}
+          </button>
         </div>
-        <nav className={m ? "mobile open" : "mobile"} aria-label="Mobile navigation">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={() => setM(false)}>{label}</a>)}</nav>
+
+        <nav className={m ? "mobile open" : "mobile"} aria-label="Mobile navigation">
+          {navLinks.map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setM(false)}>
+              {label}
+            </a>
+          ))}
+        </nav>
       </header>
 
       <main id="top">
-        <div className="bar"><div className="wrap">
-          <span>SOURCING DESK</span><span>FOR <b>WELLNESS & SUPPLEMENT BRANDS</b></span><span>MARKETS <b>US · EU · UAE · AUS · KR · JP</b></span><span><b>NO BLACK BOX</b></span>
-        </div></div>
-
-        <section className="hero" aria-labelledby="hero-title"><div className="wrap">
-          <span className="lbl">Botanical ingredient sourcing from India</span>
-          <h1 id="hero-title">Your botanical sourcing desk, <span className="hl">without the headcount.</span></h1>
-          <p>Aurelis Ingredients helps wellness, supplement and cosmetic brands source botanical ingredients from India with supplier screening, samples, documentation and coordination handled.</p>
-          <div className="row">
-            <a href="#write-to-us" className="btn pri">Request samples <ArrowRight size={16} /></a>
-            <a href="#process" className="btn gho">See how it works</a>
+        <div className="bar">
+          <div className="wrap">
+            <span>SOURCING & SUPPLY PARTNER</span>
+            <span>
+              FOR <b>WELLNESS & SUPPLEMENT BRANDS</b>
+            </span>
+            <span>
+              MARKETS <b>US · EU · UAE · AUS · KR · JP</b>
+            </span>
+            <span>
+              <b>NO BLACK BOX</b>
+            </span>
           </div>
-          <div className="keypoints" aria-label="Key sourcing categories"><span>Ashwagandha</span><span>Turmeric</span><span>Moringa</span><span>Tulsi</span><span>Extracts</span><span>Essential oils</span></div>
-        </div></section>
+        </div>
 
-        <section className="sec" id="scope" aria-labelledby="scope-title"><div className="wrap">
-          <span className="lbl">What we take off your plate</span>
-          <h2 id="scope-title" style={{ marginTop: 12 }}>The sourcing workload, handled.</h2>
-          <p className="intro">Everything below is labor and diligence we run so your procurement or product team does not have to. No blind supplier search, no endless follow-ups, no black box.</p>
-          <div className="diag">{DIAG.map(([t, p, tag]) => (
-            <article className="drow" key={t}>
-              <div className="t"><span className="ic"><Check size={13} strokeWidth={3} /></span><div><h3>{t}</h3><div className="tag mono">{tag}</div></div></div>
-              <p>{p}</p>
-            </article>
-          ))}</div>
-        </div></section>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="wrap">
+            <span className="lbl">Botanical ingredient sourcing from India</span>
 
-        <section className="steps" id="process" aria-labelledby="process-title"><div className="wrap">
-          <span className="lbl">Process</span>
-          <h2 id="process-title" style={{ marginTop: 12 }}>Four steps, fully documented.</h2>
-          <div className="sgrid">{STEPS.map(([n, t, p]) => (
-            <article className="step" key={n}><span className="n">{n}</span><h3>{t}</h3><p>{p}</p></article>
-          ))}</div>
-        </div></section>
+            <h1 id="hero-title">
+              Your botanical sourcing partner, <span className="hl">without the headcount.</span>
+            </h1>
 
-        <section className="sec" id="ingredients" aria-labelledby="ingredients-title"><div className="wrap">
-          <span className="lbl">Ingredients</span>
-          <h2 id="ingredients-title" style={{ marginTop: 12 }}>Botanical ingredients global buyers already source from India.</h2>
-          <p className="intro">The site is structured for SEO, GEO and AEO around high-intent ingredient sourcing questions, while keeping the buyer journey focused on sample requests and qualified sourcing enquiries.</p>
-          <div className="ingredients">{INGREDIENTS.map(([t, p]) => <article className="ingredient" key={t}><h3>{t}</h3><p>{p}</p></article>)}</div>
-        </div></section>
+            <p>
+              Aurelis Ingredients helps wellness, supplement and cosmetic brands source botanical ingredients from India with supplier screening, samples, documentation and coordination handled.
+            </p>
 
-        <section className="sec" id="faq" aria-labelledby="faq-title"><div className="wrap">
-          <span className="lbl">Buyer questions</span>
-          <h2 id="faq-title" style={{ marginTop: 12 }}>Answers procurement teams need before they write in.</h2>
-          <div className="faq">{FAQS.map(([q, a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div>
-        </div></section>
-
-        <section className="cta" id="write-to-us" aria-labelledby="form-title"><div className="wrap">
-          <h2 id="form-title">Send us the spec. We'll run it down.</h2>
-          <p>Tell us what you are sourcing. If it fits our network, we will respond and book a call if needed.</p>
-          <form className="formbox" onSubmit={handleSubmit}>
-            <input type="checkbox" name="botcheck" className="hp" tabIndex="-1" autoComplete="off" />
-            <div className="formgrid">
-              <div className="field"><label htmlFor="name">Your name</label><input id="name" name="name" required placeholder="Jane Smith" /></div>
-              <div className="field"><label htmlFor="email">Work email</label><input id="email" name="email" type="email" required placeholder="jane@brand.com" /></div>
-              <div className="field"><label htmlFor="company">Company</label><input id="company" name="company" required placeholder="Company name" /></div>
-              <div className="field"><label htmlFor="website">Company website</label><input id="website" name="website" type="url" placeholder="https://" /></div>
-              <div className="field"><label htmlFor="market">Country / market</label><input id="market" name="market" placeholder="USA, EU, UAE..." /></div>
-              <div className="field"><label htmlFor="ingredient">Ingredient</label><input id="ingredient" name="ingredient" required placeholder="Ashwagandha, turmeric extract..." /></div>
-              <div className="field"><label htmlFor="volume">Expected volume</label><input id="volume" name="volume" placeholder="Monthly or annual estimate" /></div>
-              <div className="field"><label htmlFor="certifications">Certifications needed</label><input id="certifications" name="certifications" placeholder="Organic, GMP, FSSAI, ISO..." /></div>
-              <div className="field"><label htmlFor="form_needed">Form needed</label><select id="form_needed" name="form_needed"><option>Root / raw material</option><option>Powder</option><option>Extract</option><option>Essential oil</option><option>Not sure yet</option></select></div>
-              <div className="field"><label htmlFor="samples_needed">Need samples?</label><select id="samples_needed" name="samples_needed"><option>Yes</option><option>No</option><option>Later</option></select></div>
-              <div className="field full"><label htmlFor="message">Requirement details</label><textarea id="message" name="message" required placeholder="Tell us the specification, active level, target price, timeline, documentation requirement, or supplier issue you are trying to solve." /></div>
+            <div className="row">
+              <a href="#write-to-us" className="btn pri">
+                Request samples <ArrowRight size={16} />
+              </a>
+              <a href="#process" className="btn gho">
+                See how it works
+              </a>
             </div>
-            <button className="btn pri" type="submit" style={{ marginTop: 18 }}>Send requirement <ArrowRight size={16} /></button>
-            <p className="note">No spam. No weird pitch deck. Just your sourcing requirement and a straight response.</p>
-            {status && <p className={status.startsWith("success") ? "status success" : status.startsWith("error") ? "status error" : "status"}>{status.replace("success: ", "").replace("error: ", "")}</p>}
-          </form>
-        </div></section>
+
+            <div className="keypoints" aria-label="Key sourcing categories">
+              <span>Ashwagandha</span>
+              <span>Turmeric</span>
+              <span>Moringa</span>
+              <span>Tulsi</span>
+              <span>Extracts</span>
+              <span>Essential oils</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec" id="scope" aria-labelledby="scope-title">
+          <div className="wrap">
+            <span className="lbl">What we take off your plate</span>
+
+            <h2 id="scope-title" style={{ marginTop: 12 }}>
+              The sourcing workload, handled.
+            </h2>
+
+            <p className="intro">
+              Everything below is labor and diligence we run so your procurement or product team does not have to. No blind supplier search, no endless follow-ups, no black box.
+            </p>
+
+            <div className="diag">
+              {DIAG.map(([t, p, tag]) => (
+                <article className="drow" key={t}>
+                  <div className="t">
+                    <span className="ic">
+                      <Check size={13} strokeWidth={3} />
+                    </span>
+                    <div>
+                      <h3>{t}</h3>
+                      <div className="tag mono">{tag}</div>
+                    </div>
+                  </div>
+                  <p>{p}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="steps" id="process" aria-labelledby="process-title">
+          <div className="wrap">
+            <span className="lbl">Process</span>
+
+            <h2 id="process-title" style={{ marginTop: 12 }}>
+              Four steps, fully documented.
+            </h2>
+
+            <div className="sgrid">
+              {STEPS.map(([n, t, p]) => (
+                <article className="step" key={n}>
+                  <span className="n">{n}</span>
+                  <h3>{t}</h3>
+                  <p>{p}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="sec" id="ingredients" aria-labelledby="ingredients-title">
+          <div className="wrap">
+            <span className="lbl">Ingredients</span>
+
+            <h2 id="ingredients-title" style={{ marginTop: 12 }}>
+              Botanical ingredients global buyers already source from India.
+            </h2>
+
+            <p className="intro">
+              The site is structured for SEO, GEO and AEO around high-intent ingredient sourcing questions, while keeping the buyer journey focused on sample requests and qualified sourcing enquiries.
+            </p>
+
+            <div className="ingredients">
+              {INGREDIENTS.map(([t, p]) => (
+                <article className="ingredient" key={t}>
+                  <h3>{t}</h3>
+                  <p>{p}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="sec" id="faq" aria-labelledby="faq-title">
+          <div className="wrap">
+            <span className="lbl">Buyer questions</span>
+
+            <h2 id="faq-title" style={{ marginTop: 12 }}>
+              Answers procurement teams need before they write in.
+            </h2>
+
+            <div className="faq">
+              {FAQS.map(([q, a]) => (
+                <details key={q}>
+                  <summary>{q}</summary>
+                  <p>{a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="cta" id="write-to-us" aria-labelledby="form-title">
+          <div className="wrap">
+            <h2 id="form-title">Tell us what you're sourcing.</h2>
+
+            <p>
+              Share your ingredient requirements, specifications, certifications and expected volumes. If we can help, we'll review the brief and get back to you within one business day.
+            </p>
+
+            <div className="typeformbox">
+              <div
+                className="tf-wrapper"
+                data-tf-live="01KVT5295NEE2A6NMPYG4DJSKF"
+              ></div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer><div className="wrap ft">
-        <span>AURELIS INGREDIENTS · BOTANICAL SOURCING DESK</span>
-        <span>BOTANICAL INGREDIENT SOURCING FROM INDIA</span>
-      </div></footer>
+      <footer>
+        <div className="wrap ft">
+          <span>AURELIS INGREDIENTS · SOURCING & SUPPLY PARTNER</span>
+          <span>BOTANICAL INGREDIENT SOURCING FROM INDIA</span>
+        </div>
+      </footer>
     </div>
   );
 }
