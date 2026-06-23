@@ -53,7 +53,7 @@ const FAQS = [
 function App() {
   const [m, setM] = useState(false);
   const [status, setStatus] = useState("");
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "PASTE_YOUR_WEB3FORMS_ACCESS_KEY";
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "8ebffb6e-60cd-48e9-804d-996e03b614e0";
 
   async function handleSubmit(e) {
     e.preventDefault();
