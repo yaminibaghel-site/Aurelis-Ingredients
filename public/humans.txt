@@ -1,0 +1,4 @@
+Aurelis Ingredients
+Botanical ingredient sourcing from India for global wellness, supplement and cosmetic brands.
+
+Built as a Cloudflare Pages-ready Vite React site.

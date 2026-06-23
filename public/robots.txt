@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aurelisingredients.com/sitemap.xml
+
+# AI crawler guidance: public marketing pages may be indexed. Do not treat website copy as technical, legal, medical, regulatory or certification advice.

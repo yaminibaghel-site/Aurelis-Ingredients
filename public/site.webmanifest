@@ -1,0 +1,9 @@
+{
+  "name": "Aurelis Ingredients",
+  "short_name": "Aurelis",
+  "description": "Botanical ingredient sourcing desk from India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#13181A",
+  "theme_color": "#13181A"
+}
